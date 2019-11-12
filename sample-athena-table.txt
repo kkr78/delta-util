@@ -1,0 +1,12 @@
+CREATE EXTERNAL TABLE IF NOT EXISTS `sample`.`my_table` (
+`id` decimal(6,0),
+`otherid` int,
+`sample_text` string)
+ROW FORMAT SERDE
+	'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe'
+STORED AS INPUTFORMAT
+	'org.apache.hadoop.hive.ql.io.parquet.MapredParquetInputFormat'
+OUTPUTFORMAT
+	'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat'
+LOCATION
+	's3://my-bucket/table/data/_symlink/'
